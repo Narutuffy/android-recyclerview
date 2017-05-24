@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerViewAdapter mAdapter;
     private GridLayoutManager layoutManager;
     private String tag="Hello";
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(tag,"position is "+position);
             }
         };
-        mAdapter=new RecyclerViewAdapter(myClickListener);
+         mAdapter=new RecyclerViewAdapter(myClickListener);
         RecyclerView.ItemDecoration itemDecoration =
                 new DividerItemDecoration(this, GridLayoutManager.HORIZONTAL);
         mRecyclerView.addItemDecoration(itemDecoration);
        mRecyclerView.setAdapter(mAdapter);
+
 
     }
 
