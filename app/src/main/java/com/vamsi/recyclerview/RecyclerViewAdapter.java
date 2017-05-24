@@ -18,7 +18,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static MyClickListener myClickListener;
     private List<Integer> mImageArray=Data.imageArray;
 
-   public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public RecyclerViewAdapter(RecyclerViewAdapter.MyClickListener myClickListener) {
+        this.myClickListener=myClickListener;
+    }
+
+    public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
        ImageView imageView;
        public DataObjectHolder(View itemView) {
            super(itemView);
@@ -29,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        @Override
 
        public void onClick(View view) {
-            myClickListener.onItemClick(getPosition(),view);
+            myClickListener.onItemClick(getAdapterPosition(),view);
        }
    }
 
@@ -40,6 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         DataObjectHolder dataObjectHolder= new DataObjectHolder(view);
         return dataObjectHolder;
     }
+
     public void setOnItemClickListener(MyClickListener myClickListener) {
         this.myClickListener = myClickListener;
     }
@@ -47,6 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
         holder.imageView.setImageResource(mImageArray.get(position));
+
     }
     public void addItem(Integer imageId, int index) {
         mImageArray.add(imageId);
